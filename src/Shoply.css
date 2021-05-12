@@ -1,0 +1,23 @@
+#product{
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+.card {
+margin-top: 1rem;
+padding: 1rem;
+background-color:beige;
+}
+
+.card-body {
+    background-color: red;
+    display:contents;
+    /* display: flex; */
+    /* align-items: center;
+    justify-content: center; */
+}
+
+.btn {
+    margin-top: 1rem;
+    
+}
