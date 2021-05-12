@@ -17,6 +17,9 @@ function cartReducer(state = INITIAL_STATE, action) {
         case 'ADD':
             console.log("payload is: ", action.payload)
             return [...state, ...action.payload]
+
+
+            
         case 'REMOVE':
             return ([(state.filter(state => state[0] !== action.payload))])
         default:

@@ -9,9 +9,7 @@ import Cart from './Cart';
 
 const Shoply = () => {
     const dispatch = useDispatch();
-    // const data = useSelector(store => ({...store[0]['products']}));
-    const data = useSelector(state => ({...state.shop[0]['products']}));
-    
+    const data = useSelector(state => ({...state.shop[0]['products']}));    
     const products = Object.entries(data);
     console.log("items in store are: ", products);
 
