@@ -1,46 +1,55 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {Container, Row, Col, Button, Card, CardBody, CardTitle, CardSubtitle} from 'reactstrap';
 // import { v4 as uuidv4} from 'uuid';
-// import AddItems from './AddItemsForm';
 import './Shoply.css';
 import Cart from './Cart';
 
 
 const Shoply = () => {
     const dispatch = useDispatch();
-    const data = useSelector(state => ({...state.shop[0]['products']}));    
-    const products = Object.entries(data);
-    console.log("items in store are: ", products);
+    
+    const data = useSelector((state) => [...state.shop]);
+
+    console.log("data is: ", data);
+    console.log("data[0].products is: ", data[0].products);
+    const newData = data[0].products;
+    const dataArray = Object.values(newData);
+    console.log("dataArray is: ", dataArray);
+
 
     const addItem = (ref) => {
         console.log("ref passed in is: ", ref);
-        const item = products.filter(product => product[0] === ref)
+        const item = data.filter(product => product[0] === ref)
         console.log("Selected item is: ", item)
         dispatch({ type: 'ADD', payload:item})
     }
 
-
+// link to :id below needs to be replaced with p.id, for example, when I know how to access the id for the product
 
     return (
         <>     
             <Container>
+                <p>hello</p>
             <Row>
-            {products.map(p => (
-            <Col xs="4">
-            <Card>
-                <CardBody>
-                    <CardTitle id='product' >{p[1].name}</CardTitle>
-                    <CardSubtitle id='ref' >{p[0]}</CardSubtitle>
-                    <Button color="success" size="sm" onClick={()=> addItem(p[0])}>Add</Button>
-                </CardBody>
-            </Card>
-            </Col>
-            ))}
+            {dataArray.map(p => (
+            <Col xs="3">
+                <Card>
+                    <CardBody>
+                        <p>hello from CardBody</p>
+                        <Link to={p.name}>
+                        <CardTitle id='product'>{p.name}</CardTitle>    
+                        </Link>
+                        <CardSubtitle id='ref'>Ref goes here</CardSubtitle>
+                        <Button color="success" size="sm" onClick={()=> addItem()}>Add</Button>
+                    </CardBody>
+                </Card>
+                 </Col>
+                  ))} 
             </Row>
             <Cart />
             </Container>
-           
         </>
     )
 }
