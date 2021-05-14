@@ -10,40 +10,41 @@ import './Shoply.css';
 const Product = () => {
     const dispatch = useDispatch();
 
-    const {name} = useParams();
-    console.log(name);
+    const {id} = useParams();
+    console.log(id);
 
     //useSelector will be used to retrieve product data and then filterd according to id from useParams
     const data = useSelector((state) => [...state.shop]);
     const newData = data[0].products;
     const dataArray = Object.values(newData);
+    const dataRef = Object.keys(newData);
+    
     
  
-    let item = dataArray.find(product => product.name === name);
+    let item = dataRef.find(product => product === id);
     console.log("item in product details is: ", item)
-    if (!name) return <Redirect to={'/'} />;
+    if (!id) return <Redirect to={'/'} />;
 
-    const addItem = (item) => {
-        dispatch({ type: 'ADD', payload:item})
-    }
+    let product = data[0].products[item];
+
+    // const addItem = (item) => {
+    //     dispatch({ type: 'ADD', payload:item})
+    // }
 
     return (
         <>     
             <Container>
-                <p>hello</p>
             <Row>
             <Col xs="3">
                 <Card>
-                <CardImg top width="100%" src={item.image_url} alt="Product image" />
+                <CardImg top width="100%" src={product.image_url} alt="Product image" />
                     <CardBody>
-                        <p>hello from CardBody</p>
-                        <CardTitle id='product'>{item.name}</CardTitle>  
-                        <CardSubtitle id='ref'>Ref goes here</CardSubtitle>
+                        <CardTitle id='product'>{product.name}</CardTitle>  
                         <CardText>
-                            {item.description}
-                            Price: {item.price}
+                            <div>{product.description}</div>
+                            <div>Price: {product.price}</div>
                         </CardText>
-                        <Button color="success" size="sm" onClick={()=> addItem(item)}>Add</Button>
+                        {/* <Button color="success" size="sm" onClick={()=> addItem()}>Add</Button> */}
                     </CardBody>
                 </Card>
                  </Col>

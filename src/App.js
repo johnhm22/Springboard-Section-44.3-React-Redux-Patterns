@@ -15,7 +15,7 @@ function App() {
       <Route exact path='/'>
       <Shoply />
       </Route>
-      <Route path="/:name">
+      <Route path="/:id">
         <Product />
       </Route>
       <Redirect to='/' />

@@ -15,12 +15,12 @@ const INITIAL_STATE = [{
 function cartReducer(state = INITIAL_STATE, action) {
     switch (action.type) {
         case 'ADD':
-            const payload = action.payload[0];
-            let obj = {};
-            const keyId = payload[0];
-            obj[keyId] = payload[1]
-            console.log("payload is: ", obj)
-            return [...state, obj];
+            // const payload = action.payload[0];
+            // let obj = {};
+            // const keyId = payload[0];
+            // obj[keyId] = payload[1]
+            // console.log("payload is: ", obj)
+            return [...state, action.payload];
 
         case 'REMOVE':
             return ([(state.filter(state => state[0] !== action.payload))])
