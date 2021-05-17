@@ -1,20 +1,5 @@
-li {
-    display: inline-block;
-}
 
-.button {
-    display: inline;
-}
-
-#remove {
-    color: red;
-    padding-left: 5px;
-}
-
-#cart_card{
-    background-color:linen;
-}
-
-ul{
-    padding:0px;
+table {
+    margin-top: 20px;
+    
 }

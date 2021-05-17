@@ -8,50 +8,37 @@ import './Cart.css';
 
 const Cart = () => {
     const dispatch = useDispatch();
-    // const data = useSelector(state => ({...state.cart[0]}));
-    const cartData = useSelector((state) => [...state.cart]);
-    
-    console.log("cartData is: ", cartData);
-    console.log("cartData[0] is: ", cartData[0]);
-    const newCartData = cartData[0];
-    const cartDataArray = Object.values(newCartData);
-    console.log("cartDataArray is: ", cartDataArray);
+    const allCartData = useSelector(state => state.cart);
+    console.log("All cart data is: ", allCartData);
+    const cartData = useSelector(state => state.cart.cartItems);
+    const products = useSelector(state => state.shop.products);
 
-    // const products = Object.entries(data);
-    // console.log("items in cart are: ", products);
-
-    // const ref = Object.keys(p)[0];
-    // const data = Object.values(p)[0];
-
-    const removeItem = (ref) => {
-        console.log("ref to remove: ", ref);
-        dispatch({type: 'REMOVE', payload: {ref}})
-    }
+    console.log("cartData in cart: ", cartData);
+  
 
     return (
         <>     
-            <Container className='mt-2'>
-            <Row>
-            {cartDataArray.map(p => (
-            <Col xs="3">
-            <Card id="cart_card">
-            <CardBody>
-            <CardTitle>Your shopping cart</CardTitle>
-                <ul>
-                    <li>Product: {p.name}</li>
-                    <span id="remove"
-                        onClick={()=> removeItem()}>
-                        x
-                    </span>
-                </ul>
-            </CardBody>
-            </Card>
-            </Col>
-             ))}
-            </Row>
-            </Container>
+        <table className="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>Item Name</th>
+                <th>Item Price</th>
+                <th>Item Quantity</th>
+            </tr>
+            </thead>
+        <tbody>
+        {Object.keys(cartData).map(ref => (
+            <tr key={ref}>
+                <td className="text-center align-middle">{products[ref].name}</td>
+                <td className="text-center align-middle">${products[ref].price}</td>
+                <td className="text-center align-middle">{cartData[ref]}</td>
+            </tr>
+              ))}
+        </tbody>
+      </table>
         </>
     )
 }
+
 
 export default Cart;

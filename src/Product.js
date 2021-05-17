@@ -1,8 +1,7 @@
 import React from 'react';
-import {useParams, Redirect} from 'react-router-dom';
+import {useParams, Redirect, Link} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {Container, Row, Col, Button, Card, CardBody, CardTitle, CardSubtitle, CardImg, CardText} from 'reactstrap';
-// import { v4 as uuidv4} from 'uuid';
 import './Shoply.css';
 
 
@@ -11,11 +10,10 @@ const Product = () => {
     const dispatch = useDispatch();
 
     const {id} = useParams();
-    console.log(id);
 
-    //useSelector will be used to retrieve product data and then filterd according to id from useParams
-    const data = useSelector((state) => [...state.shop]);
-    const newData = data[0].products;
+    const data = useSelector(state => state.shop);
+    console.log("data in product: ", data);
+    const newData = data.products;
     const dataArray = Object.values(newData);
     const dataRef = Object.keys(newData);
     
@@ -25,15 +23,12 @@ const Product = () => {
     console.log("item in product details is: ", item)
     if (!id) return <Redirect to={'/'} />;
 
-    let product = data[0].products[item];
-
-    // const addItem = (item) => {
-    //     dispatch({ type: 'ADD', payload:item})
-    // }
+    let product = data.products[item];
 
     return (
         <>     
             <Container>
+                <Link to='/'>Back to products</Link>
             <Row>
             <Col xs="3">
                 <Card>

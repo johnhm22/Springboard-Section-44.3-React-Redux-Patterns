@@ -1,31 +1,34 @@
+import { useSelector } from "react-redux";
 
 
-const INITIAL_STATE = [{
-    "47314fa1-ae56-4eae-80be-af6691145951": {
-      "name": "tv",
-      "price": 219.99,
-      "description": "A beautiful, big-screen TV. Because hey, Netflix isn't going to watch itself.",
-      "image_url": "https://images.samsung.com/is/image/samsung/latin_en-hd-j4300ah-un32j4300ahxpa-001-front-indigo-blue"
-    }
-}];
-// const INITIAL_STATE = [];
-
+const INITIAL_STATE = {
+    cartItems:{"b04b779c-1cfb-48a7-8424-25a8c7e608ae": 1}
+};
 
 
 function cartReducer(state = INITIAL_STATE, action) {
+    console.log("action in cartReducer: ", action)
     switch (action.type) {
-        case 'ADD':
-            // const payload = action.payload[0];
-            // let obj = {};
-            // const keyId = payload[0];
-            // obj[keyId] = payload[1]
-            // console.log("payload is: ", obj)
-            return [...state, action.payload];
+        case 'ADD':{
+            const cartCopy = { ...state.cartItems };
+            console.log("action.itemRef is: ", action.itemRef);
+            cartCopy[action.itemRef] = (cartCopy[action.itemRef] || 0) + 1;
+            console.log("cartCopy is: ", cartCopy)
+            return {cartItems: cartCopy};
+       }
+        case 'REMOVE': {
+            const cartCopy = { ...state.cartItems };
+            if (!cartCopy[action.itemRef]) return state;
+            cartCopy[action.itemRef]--;
+            if (cartCopy[action.itemRef] === 0) {
+              delete cartCopy[action.itemRef];
+            }
+            return {cartItems: cartCopy}
+        }
 
-        case 'REMOVE':
-            return ([(state.filter(state => state[0] !== action.payload))])
-        default:
-            return state;
+        default:{
+            return state; 
+            }   
     }
 }
 
