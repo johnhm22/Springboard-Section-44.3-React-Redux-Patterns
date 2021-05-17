@@ -7,13 +7,10 @@ const INITIAL_STATE = {
 
 
 function cartReducer(state = INITIAL_STATE, action) {
-    console.log("action in cartReducer: ", action)
     switch (action.type) {
         case 'ADD':{
             const cartCopy = { ...state.cartItems };
-            console.log("action.itemRef is: ", action.itemRef);
             cartCopy[action.itemRef] = (cartCopy[action.itemRef] || 0) + 1;
-            console.log("cartCopy is: ", cartCopy)
             return {cartItems: cartCopy};
        }
         case 'REMOVE': {

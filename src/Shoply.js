@@ -1,8 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import {Container, Row, Col, Button, Card, CardBody, CardTitle, CardSubtitle} from 'reactstrap';
-// import { v4 as uuidv4} from 'uuid';
+import {Container, Row, Col, Button, Card, CardBody, CardTitle} from 'reactstrap';
 import './Shoply.css';
 import Cart from './Cart';
 
@@ -16,7 +15,6 @@ const Shoply = () => {
     const addItem = (ref) => {
         for(let p in data){
             if(p === ref){
-                // dispatch({type: 'ADD', cartItems: {[ref]: data[ref]}})
                 dispatch({type: 'ADD', itemRef: ref})
             }
         }

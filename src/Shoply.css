@@ -9,13 +9,6 @@ padding: 1rem;
 background-color:beige;
 }
 
-.card-body {
-    background-color: red;
-    display:contents;
-    /* display: flex; */
-    /* align-items: center;
-    justify-content: center; */
-}
 
 .btn {
     margin-top: 1rem;

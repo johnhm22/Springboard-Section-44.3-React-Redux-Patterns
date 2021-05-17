@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Link, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import './App.css';
 import Shoply from './Shoply';
 import Product from './Product';

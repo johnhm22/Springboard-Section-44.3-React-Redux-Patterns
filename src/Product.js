@@ -1,7 +1,7 @@
 import React from 'react';
 import {useParams, Redirect, Link} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import {Container, Row, Col, Button, Card, CardBody, CardTitle, CardSubtitle, CardImg, CardText} from 'reactstrap';
+import {Container, Row, Col, Card, CardBody, CardTitle, CardImg, CardText} from 'reactstrap';
 import './Shoply.css';
 
 
@@ -12,15 +12,12 @@ const Product = () => {
     const {id} = useParams();
 
     const data = useSelector(state => state.shop);
-    console.log("data in product: ", data);
     const newData = data.products;
-    const dataArray = Object.values(newData);
     const dataRef = Object.keys(newData);
     
     
  
     let item = dataRef.find(product => product === id);
-    console.log("item in product details is: ", item)
     if (!id) return <Redirect to={'/'} />;
 
     let product = data.products[item];
